@@ -1,4 +1,5 @@
 import { formatCurrency } from "@/lib/formatCurrency";
+import { imageUrl } from "@/lib/imageUrl";
 import { getMyOrders } from "@/sanity/lib/Orders/getMyOrders";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
