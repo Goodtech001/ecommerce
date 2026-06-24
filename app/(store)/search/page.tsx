@@ -1,39 +1,45 @@
 import ProductGrid from "@/components/ProductGrid";
 import { searchProductsByName } from "@/sanity/lib/products/searchProductsByName";
 
-async function SearchPage({
-  searchParams,
-}: {
-  searchParams: {
-    query: string;
-  };
-}) {
-    const { query } = await searchParams;
-    const products = await searchProductsByName(query);
+// 1. Explicitly type searchParams as a Promise to satisfy Next.js 15+ constraints
+interface SearchPageProps {
+  searchParams: Promise<{
+    query?: string;
+  }>;
+}
 
-    if (!products.length) {
-      return(
-        <div className="flex flex-col items-center justify-top min-h-screen bg-gray-100 p-4">
-          <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-4xl">
-            <h1 className="text-3xl font-bold mb-6 text-center">
-              No products found for:{query}
-            </h1>
-            <p className="text-gray-600 text-center">Try searching with different keywords</p>
-          </div>
+async function SearchPage({ searchParams }: SearchPageProps) {
+  // 2. Properly await the incoming async search params stream
+  const resolvedSearchParams = await searchParams;
+  const query = resolvedSearchParams.query || "";
+  
+  const products = await searchProductsByName(query);
+
+  if (!products.length) {
+    return (
+      <div className="flex flex-col items-center justify-top min-h-screen bg-gray-50 p-4">
+        <div className="bg-white p-8 rounded-2xl border border-zinc-100 shadow-sm w-full max-w-4xl mt-8">
+          <h1 className="text-2xl font-bold tracking-tight text-zinc-900 text-center mb-2">
+            No products found for &quot;{query}&quot;
+          </h1>
+          <p className="text-zinc-500 text-sm text-center">
+            Try searching with different keywords or check your spelling.
+          </p>
         </div>
+      </div>
     );
   }
 
-  
   return (
-    <div className="flex flex-col items-center justify-top min-h-screen bg-grey-100 p-4">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-4xl">
-        <h1 className="text-3xl font-bold mb-6 text-center">
-          Search result for {query}
+    <div className="flex flex-col items-center justify-top min-h-screen bg-gray-50 p-4">
+      <div className="bg-white p-8 rounded-2xl border border-zinc-100 shadow-sm w-full max-w-4xl mt-8">
+        <h1 className="text-2xl font-black tracking-tight text-zinc-900 mb-6">
+          Search results for &quot;{query}&quot;
         </h1>
         <ProductGrid products={products} />
       </div>
     </div>
   );
 }
+
 export default SearchPage;
