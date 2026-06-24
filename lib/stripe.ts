@@ -5,7 +5,8 @@ if (!process.env.STRIPE_SECRET_KEY) {
 }
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: '2025-03-31.basil', //Use the latest API version
+    // Correct version literal requested by your current SDK version
+    apiVersion: '2025-08-27.basil', 
 })
 
-export default stripe
+export default stripe;
