@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
@@ -21,7 +22,7 @@ export const ImagesSlider = ({
   direction?: "up" | "down";
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [, setLoading] = useState(false);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
 
   const handleNext = () => {
@@ -112,7 +113,7 @@ export const ImagesSlider = ({
         duration: 1,
       },
     },
-  };
+  } as const;
 
   const areImagesLoaded = loadedImages.length > 0;
 

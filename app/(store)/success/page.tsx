@@ -2,11 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import useBasketStore from "@/store/store";
-import { clear } from "console";
+// import { clear } from "console";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation"
 import { useEffect } from "react";
-import { SESSION_ID } from "sanity";
+// import { SESSION_ID } from "sanity";
 
 
 function SuccessPage() {

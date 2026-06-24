@@ -3,7 +3,7 @@ import { getProductBySlug } from "@/sanity/lib/products/getProductBySlug";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { PortableText } from "next-sanity";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import AddToBasketButton from "@/components/AddToBasketButton";
 
 async function ProductPage( 

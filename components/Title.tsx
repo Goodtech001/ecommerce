@@ -4,10 +4,10 @@
 // import vid from "@/public/fid.mp4"
 
 
-import gif from "@/public/t.gif"
-import Image from "next/image"
+// import gif from "@/public/t.gif"
+// import Image from "next/image"
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { client } from "@/sanity/lib/client";
+// import { client } from "@/sanity/lib/client";
 const Title = () => {
   return (
     <div className="flex p-10">
